@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="date" name="" id="dob">
+    <button onclick="displaydate1()">display date</button>
+    <script>
+        function displaydate1() {
+            var input = document.getElementById('dob').value;
+            if (Date.parse(input)) {
+                var inputdate = new Date(input)
+                console.log(inputdate)
+                var currentdate = new Date();
+                console.log(currentdate)
+
+                var millisecdiff = (parseInt(currentdate.getTime()) - parseInt(inputdate.getTime()))
+                console.log(millisecdiff)
+
+                var secondsdiff = mathfloor(millisecdiff, 1000)
+                console.log(secondsdiff)
+
+                var minutesdiff = mathfloor(secondsdiff, 60)
+                console.log(minutesdiff)
+
+                var hoursdiff = mathfloor(minutesdiff, 60)
+                console.log(hoursdiff)
+
+                var daysdiff = mathfloor(hoursdiff, 24)
+                console.log(daysdiff)
+
+                var yeardiff = getyears(inputdate, currentdate);
+                console.log(yeardiff)
+                var monthsdiff = getmonths(inputdate, currentdate);
+                console.log(monthsdiff)
+
+            } else {
+                console.log("give correct date")
+            }
+
+            function mathfloor(value1, value2) {
+                return Math.floor(value1 / value2)
+            }
+
+            function getyears(value1, value2) {
+                var d1 = new Date(value1);
+                var d2 = new Date(value2);
+                return d2.getFullYear() - d1.getFullYear()
+
+            }
+
+            function getmonths(value1, value2) {
+                var year = getyears(value1, value2)
+                var month = (year * 12) + (value2.getMonth() - value1.getMonth())
+                return month;
+
+
+            }
+            var result = document.createElement('div');
+            result.setAttribute('id', 'res');
+
+            result.innerHTML = ``;
+            document.body.append(result)
+
+        }
+    </script>
+
+</body>
+
+</html>
